@@ -1,0 +1,26 @@
+body {
+  font-family: 'Roboto', sans-serif;
+  box-sizing: border-box;
+}
+
+div {
+  margin: 30px;
+  padding: 20px;
+  width: 600px; 
+}
+
+label, input {
+  display: block; 
+  padding: 5px; 
+  margin: 5px;
+}
+
+label {
+  font-weight: bold;
+}
+
+input[type=submit] {
+  padding: 5px; 
+  width: 182px;; 
+  margin-top: 15px;
+}
