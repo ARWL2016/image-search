@@ -8,7 +8,7 @@ const cors      = require('cors');
 const path      = require('path');
 
 const { buildUrl } = require('./utils/url-builder.js');
-const { logQuery, getQueries } = require('./utils/query-logger');
+const { logQuery, readQueryLog } = require('./utils/query-logger');
 const Response = require('./utils/response-class');
 
 const app = express(); 
@@ -21,7 +21,7 @@ const port = process.env.PORT;
 
 // GET - log of previous 10 search queries 
 app.get('/api/latest/imagesearch', (req, res) => {
-  const queries = getQueries(); 
+  const queries = readQueryLog(); 
   res.json(queries);
 });
 
@@ -29,7 +29,7 @@ app.get('/api/latest/imagesearch', (req, res) => {
 app.get('/api/imagesearch/?', (req, res) => {
   const { search } = req.query;
 
-  // limit offset value to 1-100 (0 offset returns error)
+  // limit offset value to 1-50 (0 offset returns error)
   const offset = (req.query.offset > 0 && req.query.offset <= 50) ? req.query.offset : 1;
 
   if (!search) {
@@ -45,6 +45,7 @@ app.get('/api/imagesearch/?', (req, res) => {
         const {request} = result.queries;
 
         console.log({request});
+        
         // totalResults is a string - coerce to number then check if 0
         if (!+request[0].totalResults) {
           res.json({result: 'No results found'});
@@ -59,7 +60,7 @@ app.get('/api/imagesearch/?', (req, res) => {
 
     }).catch(err => {
         winston.log('error', err);
-        res.status(500).json({err});
+        res.status(500).send('Something went wrong');
     });
   }
 });
