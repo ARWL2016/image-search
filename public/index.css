@@ -9,6 +9,14 @@ div {
   width: 600px; 
 }
 
+p {
+  margin: 5px;
+}
+
+p:last-of-type {
+  margin-bottom: 20px;
+}
+
 label, input {
   display: block; 
   padding: 5px; 
@@ -20,7 +28,7 @@ label {
 }
 
 input[type=submit] {
-  padding: 5px; 
+  padding: 7px; 
   width: 182px;; 
   margin-top: 15px;
 }

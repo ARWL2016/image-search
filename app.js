@@ -3,20 +3,31 @@ require('dotenv').config();
 const express   = require('express');
 const winston   = require('winston');
 const rp        = require('request-promise');
+const helmet    = require('helmet');
 const path      = require('path');
 
 const { buildUrl } = require('./utils/url-builder.js');
-const { logQuery } = require('./utils/query-logger');
+const { logQuery, getQueries } = require('./utils/query-logger');
 const Response = require('./utils/response-class');
 
 const app = express(); 
 
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(helmet());
 
 const port = process.env.PORT; 
 
-app.get('/api/imagesearch/?', (req, res, next) => {
+// GET - log of previous 10 search queries 
+app.get('/api/latest/imagesearch', (req, res) => {
+  const queries = getQueries(); 
+  res.json(queries);
+});
+
+// GET - results of custom image search of imgur
+app.get('/api/imagesearch/?', (req, res) => {
   const { search } = req.query;
+
+  // limit offset value to 1-100 (0 offset returns error)
   const offset = (req.query.offset > 0 && req.query.offset <= 100) ? req.query.offset : 1;
 
   if (!search) {
@@ -26,30 +37,29 @@ app.get('/api/imagesearch/?', (req, res, next) => {
 
     const url = buildUrl(search, offset);
 
-    rp(url).then(jsonString => {
-      const result = JSON.parse(jsonString);
-      const request = result.queries.request;
-      console.log({request});
+    rp(url)
+      .then(jsonString => {
+        const result = JSON.parse(jsonString);
+        const {request} = result.queries;
 
-      if (!+request[0].totalResults) {
-        res.send('no results');
-      } else {
-        const responseArray = [];
-        result.items.forEach(item => {
-          responseArray.push(new Response(item.link, item.snippet, item.image.contextLink));
-        });
-  
-        res.json(responseArray);
-      }
+        // totalResults is a string - coerce to number then check if 0
+        if (!+request[0].totalResults) {
+          res.json({result: 'No results found'});
+        } else {
+          const responseArray = [];
+          result.items.forEach(item => {
+            responseArray.push(new Response(item.link, item.snippet, item.image.contextLink));
+          });
+    
+          res.json(responseArray);
+        }
 
     }).catch(err => {
-      winston.log('error', err);
-      res.status(500).json({err});
+        winston.log('error', err);
+        res.status(500).json({err});
     });
   }
 });
-
-app.get('')
 
 app.listen(port, () => {
   winston.log('info', `Listening on PORT ${port}`);

@@ -1,3 +1,10 @@
+/**
+ * @function  buildUrl - constructs URL to query the Google Custom Search engine
+ * @param     searchTerm - user's search query
+ * @param     offset - index of result to begin at (for paging results)
+ * @return    URL string
+ */
+
 const baseUrl = 'https://www.googleapis.com/customsearch/v1';
 
 // id of custom search engine 
