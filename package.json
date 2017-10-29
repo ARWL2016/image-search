@@ -11,6 +11,7 @@
   "author": "Alistair Willis",
   "license": "ISC",
   "dependencies": {
+    "cors": "2.8.4",
     "dotenv": "4.0.0",
     "express": "4.16.2",
     "helmet": "3.9.0",

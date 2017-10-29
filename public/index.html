@@ -18,6 +18,10 @@
     <![endif]-->
     <div>
       <h1>Image Search Abstraction Layer</h1>
+      <p>This microservice takes in a search term and conducts an image search of the https://imgur.com/ domain. The 
+        return value is a JSON object with links to available images and the alt text property.</p>
+      <p>The API is cors-enabled for all origins.</p>
+
       <h2> Usage</h2>
       <p>Basic query: <a href="/api/imagesearch?search=cats&offset=10"><code>/api/imagesearch?search=[cats]&offset=[10]</code></a></p>
       <p>Recent queries: <a href="/api/latest/imagesearch/"><code>/api/latest/imagesearch</code></a></p>
@@ -25,7 +29,7 @@
       <form method="get" action="/api/imagesearch" >
         <label for="search">Search Term</label>
         <input type="search" name="search" id="search">
-        <label for="offset">Offset</label>
+        <label for="offset">Offset (1-50)</label>
         <input type="number" value="1" name="offset" id="offset">
         <input type="submit">
       </form>

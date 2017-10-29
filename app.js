@@ -4,6 +4,7 @@ const express   = require('express');
 const winston   = require('winston');
 const rp        = require('request-promise');
 const helmet    = require('helmet');
+const cors      = require('cors');
 const path      = require('path');
 
 const { buildUrl } = require('./utils/url-builder.js');
@@ -14,6 +15,7 @@ const app = express();
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(helmet());
+app.use(cors());
 
 const port = process.env.PORT; 
 
@@ -28,7 +30,7 @@ app.get('/api/imagesearch/?', (req, res) => {
   const { search } = req.query;
 
   // limit offset value to 1-100 (0 offset returns error)
-  const offset = (req.query.offset > 0 && req.query.offset <= 100) ? req.query.offset : 1;
+  const offset = (req.query.offset > 0 && req.query.offset <= 50) ? req.query.offset : 1;
 
   if (!search) {
     res.json({err: 'no search term entered'});
@@ -42,6 +44,7 @@ app.get('/api/imagesearch/?', (req, res) => {
         const result = JSON.parse(jsonString);
         const {request} = result.queries;
 
+        console.log({request});
         // totalResults is a string - coerce to number then check if 0
         if (!+request[0].totalResults) {
           res.json({result: 'No results found'});
