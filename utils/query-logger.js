@@ -5,8 +5,8 @@
  * @function readQueryLog - gets all queries (max 10) 
  */
 
-const fs = require('fs');
-const { logFile } = require('../config');
+const fs = require("fs");
+const { logFile } = require("../config");
 
 function logQuery(search, offset) {
 
@@ -28,7 +28,7 @@ function readQueryLog() {
   // get previous search results from log file or create new array
   // JSON.parse will throw error if log file is empty
   try {
-    const logs = JSON.parse(fs.readFileSync(logFile, 'utf-8'));
+    const logs = JSON.parse(fs.readFileSync(logFile, "utf-8"));
     return logs;
   } catch (e) {
     return [];
