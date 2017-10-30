@@ -1,6 +1,6 @@
 const path = require('path');
 
-const logFilePath = (process.env.NODE_ENV = 'test') ? 
+const logFilePath = (process.env.NODE_ENV === 'test') ? 
   '../query-log-mock.js' : 
   '../query-log.js';
 

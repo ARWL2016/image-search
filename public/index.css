@@ -34,3 +34,7 @@ input[type=submit] {
   width: 182px;; 
   margin-top: 15px;
 }
+
+form {
+  margin-bottom: 20px;
+}
