@@ -1,8 +1,11 @@
 {
   "name": "image-search",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "image search abstraction layer",
+  "main": "app.js",
+  "engines": {
+    "node": "6.11.2"
+  },
   "scripts": {
     "test": "SET \"NODE_ENV=test\" && mocha test/",
     "start": "node app.js",
