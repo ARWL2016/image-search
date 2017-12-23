@@ -11,7 +11,9 @@
     "start": "node app.js",
     "dev": "nodemon app.js",
     "lint": "eslint app.js utils/ --fix",
-    "kill": "taskkill /f /im node.exe"
+    "kill": "taskkill /f /im node.exe", 
+    "deploy": "git push heroku master", 
+    "postdeploy": "heroku open"
   },
   "author": "Alistair Willis",
   "license": "ISC",
