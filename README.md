@@ -1,9 +1,9 @@
 ### Image Search Abstraction Layer 
 
-This API microservice conducts an images search of the `https://imgur.com/*` domain using Google Custom Search. 
+This API microservice conducts an image search of the `https://imgur.com/*` domain using Google Custom Search. 
 Users can enter a search term and an offset value (ie offset=10 will fetch results 11-20), and the API will respond 
 with a list of image URLs and alt texts. The last 10 queries are recorded on a log file and can be returned. The API 
-is CORS enabled for all origins. 
+is CORS enabled for GET requests from all origins. 
 
 Project criteria: https://www.freecodecamp.org/challenges/image-search-abstraction-layer 
 
@@ -17,6 +17,7 @@ Project criteria: https://www.freecodecamp.org/challenges/image-search-abstracti
 - Google Custom Search https://support.google.com/customsearch/answer/4513751?hl=en&ref_topic=4513742  
 - Test suite: Mocha / Chai  
 - Utilities: Helmet, Cors, Dotenv, Request-Promise, Winston  
+- Deployed on Heroku  
 
 #### Comments
 - UI Tested on Chrome, Opera, Edge  
@@ -24,7 +25,7 @@ Project criteria: https://www.freecodecamp.org/challenges/image-search-abstracti
 
 #### Todos 
 - add GET request tests  
-- restrict CORS to get requests using method property
+- default to HTTPS since this is enabled on Heroku
 
 
 
