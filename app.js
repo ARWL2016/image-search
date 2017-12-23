@@ -22,6 +22,10 @@ app.get("/api/latest/imagesearch", getLatestBooks);
 // GET - results of custom image search of imgur
 app.get("/api/imagesearch/?", searchImages);
 
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'index.html'));
+})
+
 app.listen(port, () => {
   winston.log("info", `Listening on PORT ${port}`);
 });

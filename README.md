@@ -1,31 +1,31 @@
 ### Image Search Abstraction Layer 
 
-https://www.freecodecamp.org/challenges/image-search-abstraction-layer 
-https://cryptic-ridge-9197.herokuapp.com/api/latest/imagesearch/ 
-https://cryptic-ridge-9197.herokuapp.com/api/imagesearch/lolcats%20funny?offset=10 
+This API microservice conducts an images search of the `https://imgur.com/*` domain using Google Custom Search. 
+Users can enter a search term and an offset value (ie offset=10 will fetch results 11-20), and the API will respond 
+with a list of image URLs and alt texts. The last 10 queries are recorded on a log file and can be returned. The API 
+is CORS enabled for all origins. 
 
-API Explorer
-https://developers.google.com/apis-explorer/#p/customsearch/v1/search.cse.list?q=cats&cx=017625680317875473405%253Ak-0n9qcflqu&searchType=image&siteSearch=https%253A%252F%252Fimgur.com%252F*&_h=2& 
+Project criteria: https://www.freecodecamp.org/challenges/image-search-abstraction-layer 
 
-Custom Search Engine Config 
-https://cse.google.com/cse/setup/basic?cx=017625680317875473405%3Ak-0n9qcflqu 
-https://developers.google.com/apis-explorer/#p/customsearch/v1/search.cse.list
+#### API Usage  
+- `/api/imagesearch?search=[cats]&offset=[10]` - query imgur with search term cats and offset of 10  
+- `/api/latest/imagesearch`- return last 10 queries  
 
-GET https://www.googleapis.com/customsearch/v1?q=cats&cx=017625680317875473405%3Ak-0n9qcflqu&searchType=image&siteSearch=https%3A%2F%2Fimgur.com%2F*&key={YOUR_API_KEY}
+#### Tech 
+- Node 6.11.2    
+- Express 4.16   
+- Google Custom Search https://support.google.com/customsearch/answer/4513751?hl=en&ref_topic=4513742  
+- Test suite: Mocha / Chai  
+- Utilities: Helmet, Cors, Dotenv, Request-Promise, Winston  
 
-"https://www.googleapis.com/customsearch/v1?q=cats&cx=017625680317875473405%3Ak-0n9qcflqu&searchType=image&siteSearch=https%3A%2F%2Fimgur.com%2F*&start=10&key=AIzaSyDiWM50-rIL1sqRvD3czfkBzZyNEtFVOOw"
+#### Comments
+- UI Tested on Chrome, Opera, Edge  
 
-#### Analysis   
-https://www.googleapis.com/customsearch/v1
-?
-q=cats
-&
-cx=017625680317875473405%3Ak-0n9qcflqu
-&
-searchType=image
-&
-siteSearch=https%3A%2F%2Fimgur.com%2F*
-&
-start=10
-&
-key={YOUR_API_KEY}
+#### Todos 
+- add GET request tests  
+
+
+
+
+
+

@@ -1,28 +1,26 @@
-<!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<!-- Doctype HTML5 -->
+<!doctype html>
+<html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Image Search</title>
-    <meta name="description" content="">
+    <meta name="description" content="Microservice image search abstraction API">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" href="favicon-32.png">
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    
     <link rel="stylesheet" href="index.css">
   </head>
   <body>
-    <!--[if lt IE 7]>
-      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
-    <![endif]-->
-    <div>
+
+    <section>
       <h1>Image Search Abstraction Layer</h1>
       <p>This microservice takes in a search term and conducts an image search of the https://imgur.com/ domain. The 
         return value is a JSON object with links to available images and the alt text property.</p>
       <p>The API is cors-enabled for all origins.</p>
 
-      <h2> Usage</h2>
+      <h2>Usage</h2>
       <p>Basic query: <a href="/api/imagesearch?search=cats&offset=10"><code>/api/imagesearch?search=[cats]&offset=[10]</code></a></p>
       <p>Recent queries: <a href="/api/latest/imagesearch/"><code>/api/latest/imagesearch</code></a></p>
       <h2>Explorer</h2>
@@ -35,8 +33,8 @@
       </form>
       <p>
         Created by Alistair Willis using Node 6.11.2 and Express 4.16. Tested with Mocha / Chai. View the source code at
-        <a href="https://github.com/ARWL2016/image-search" target="_blank"> Github</a>.
+        <a href="https://github.com/ARWL2016/image-search" target="_blank" rel="noopener"> Github</a>.
       </p>
-    </div>
+    </section>
   </body>
 </html>

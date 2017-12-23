@@ -1,3 +1,14 @@
+/**
+ * This file contains controller methods serving the two API routes in app.js
+ * @function getLatestBooks - wrapper around readQueryLog() - returns max last 10 queries
+ * @function searchImages - 
+ *  1. collects query data from form; 
+ *  2. calls log query if data valid 
+ *  3. calls buildUrl method
+ *  4. makes GET request using Google custom search 
+ *  5. parses the results and send res
+ */
+
 const rp = require("request-promise");
 
 const { readQueryLog, logQuery } = require("../utils/query-logger");
@@ -33,13 +44,13 @@ function searchImages(req, res) {
           res.json({result: "No results found"});
         } else {
           const responseArray = [];
-          result.items.forEach((item) => {
+          result.items.forEach(item => {
             responseArray.push(new Response(item.link, item.snippet, item.image.contextLink));
           });
 
           res.json(responseArray);
         }
-    }).catch((err) => {
+    }).catch(err => {
         winston.log("error", err);
         res.status(500).send("Something went wrong");
     });
