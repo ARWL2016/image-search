@@ -8,8 +8,8 @@ is CORS enabled for all origins.
 Project criteria: https://www.freecodecamp.org/challenges/image-search-abstraction-layer 
 
 #### API Usage  
-- `/api/imagesearch?search=[cats]&offset=[10]` - query imgur with search term cats and offset of 10  
-- `/api/latest/imagesearch`- return last 10 queries  
+- GET `/api/imagesearch?search=[cats]&offset=[10]` - query imgur with search term cats and offset of 10  
+- GET `/api/latest/imagesearch`- return last 10 queries  
 
 #### Tech 
 - Node 6.11.2    
