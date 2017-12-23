@@ -23,6 +23,7 @@ Project criteria: https://www.freecodecamp.org/challenges/image-search-abstracti
 
 #### Todos 
 - add GET request tests  
+- restrict CORS to get requests using method property
 
 
 
