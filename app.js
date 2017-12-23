@@ -16,9 +16,12 @@ app.use(helmet.contentSecurityPolicy({
   directives: {
     defaultSrc: ["'self'"], 
     styleSrc: ["'self'", 'https://fonts.googleapis.com'],
-    fontSrc: ['https://fonts.gstatic.com']
+    fontSrc: ['https://fonts.gstatic.com'], 
+    formAction: ["'self'"],
+    frameAncestors: ["'none'"]
   }
 }));
+app.use(helmet.referrerPolicy({policy: 'same-origin'}));
 
 const staticOptions = {
   maxAge: ms('10d')
