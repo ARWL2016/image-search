@@ -5,14 +5,32 @@ const winston = require("winston");
 const helmet = require("helmet");
 const cors = require("cors");
 const path = require("path");
+const ms = require('ms');
 
 const { getLatestBooks, searchImages } = require("./controllers");
 
 const app = express();
 
-app.use(express.static(path.join(__dirname, "public")));
 app.use(helmet());
-app.use(cors());
+app.use(helmet.contentSecurityPolicy({
+  directives: {
+    defaultSrc: ["'self'"], 
+    styleSrc: ["'self'", 'https://fonts.googleapis.com'],
+    fontSrc: ['https://fonts.gstatic.com']
+  }
+}));
+
+const staticOptions = {
+  maxAge: ms('10d')
+}; 
+
+const corsOptions = {
+  methods: 'GET'
+}
+
+app.use(express.static(path.join(__dirname, "public"), staticOptions));
+
+app.use(cors(corsOptions));
 
 const port = process.env.PORT;
 
