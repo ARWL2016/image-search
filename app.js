@@ -10,6 +10,10 @@ const ms = require('ms');
 const { getLatestBooks, searchImages } = require("./controllers");
 
 const app = express();
+const port = process.env.PORT;
+
+const staticOptions = { maxAge: ms('10d') }; 
+const corsOptions = { methods: 'GET' }
 
 app.use(helmet());
 app.use(helmet.contentSecurityPolicy({
@@ -23,19 +27,8 @@ app.use(helmet.contentSecurityPolicy({
 }));
 app.use(helmet.referrerPolicy({policy: 'same-origin'}));
 
-const staticOptions = {
-  maxAge: ms('10d')
-}; 
-
-const corsOptions = {
-  methods: 'GET'
-}
-
 app.use(express.static(path.join(__dirname, "public"), staticOptions));
-
 app.use(cors(corsOptions));
-
-const port = process.env.PORT;
 
 // GET - log of previous 10 search queries
 app.get("/api/latest/imagesearch", getLatestBooks);

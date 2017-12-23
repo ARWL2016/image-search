@@ -20,6 +20,7 @@ Project criteria: https://www.freecodecamp.org/challenges/image-search-abstracti
 
 #### Comments
 - UI Tested on Chrome, Opera, Edge  
+- Security Grade B: https://observatory.mozilla.org/analyze.html?host=arwl-image-search.herokuapp.com  
 
 #### Todos 
 - add GET request tests  
